@@ -13,14 +13,14 @@
     <div id="root">
       <p style="color:#88c0d0;font-family:monospace;text-align:center;margin-top:40vh">Loading...</p>
     </div>
-    <script>
-      window.onerror = function(msg, src, line, col, err) {
+    <script type="module">
+      try {
+        await import('/src/main.tsx');
+      } catch(e) {
         document.getElementById('root').innerHTML =
           '<pre style="color:#bf616a;padding:2rem;font-family:monospace;white-space:pre-wrap">' +
-          'JS Error: ' + msg + '\nSource: ' + src + ':' + line + ':' + col +
-          (err && err.stack ? '\n\nStack:\n' + err.stack : '') + '</pre>';
-      };
+          'Module Error: ' + e.message + '\n\n' + (e.stack || '') + '</pre>';
+      }
     </script>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
