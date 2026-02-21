@@ -34,7 +34,7 @@ export class SynthEngine {
       release: p.release,
     })
 
-    this.gain = new Tone.Gain(p.masterGain)
+    this.gain = new Tone.Gain({ gain: p.masterGain })
 
     this.lfo = new Tone.LFO({
       frequency: p.lfoRate,
